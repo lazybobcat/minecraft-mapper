@@ -53,9 +53,14 @@ class Mapper
     /**
      * @var string
      */
+    private $resourcesDir;
+
+    /**
+     * @var string
+     */
     private $outputDir;
 
-    public function __construct(ImageManager $imageManager, MojangAPI $mojangAPI, $map, $topLeftCoords, $bottomRightCoords, $outputDir)
+    public function __construct(ImageManager $imageManager, MojangAPI $mojangAPI, $map, $topLeftCoords, $bottomRightCoords, $resourcesDir, $outputDir)
     {
         $this->map = $map;
         $this->imageSize = getimagesize($this->map);
@@ -72,6 +77,7 @@ class Mapper
         // Printer
         $this->printer = new Printer($imageManager, $map);
         $this->mojangAPI = $mojangAPI;
+        $this->resourcesDir = $resourcesDir;
         $this->outputDir = $outputDir;
     }
 
@@ -105,10 +111,22 @@ class Mapper
         $position = $this->blockToPixelCoords($baseCoords);
         $pxTextPosition = clone $position;
         $pxTextPosition->z += $headSize;
-        $pxHeadPosition = Coord::sub($this->blockToPixelCoords($baseCoords), new Coord($headSize/2, 0, $headSize/2));
+        $pxHeadPosition = Coord::sub($position, new Coord($headSize/2, 0, $headSize/2));
 
         $this->actions[] = new DrawImageAction($file, $pxHeadPosition, $headSize);
         $this->actions[] = new DrawTextAction($playerName, $pxTextPosition, $nameSize);
+    }
+
+    public function addTown($name, Coord $coords, $size = 8, $nameSize = 8)
+    {
+        $file = $this->resourcesDir . DIRECTORY_SEPARATOR . 'town.png';
+        $position = $this->blockToPixelCoords($coords);
+        $pxImagePosition = Coord::sub($position, new Coord($size/2, 0, $size/2));
+        $pxTextPosition = clone $position;
+        $pxTextPosition->z += $size;
+
+        $this->actions[] = new DrawImageAction($file, $pxImagePosition, $size);
+        $this->actions[] = new DrawTextAction($name, $pxTextPosition, $nameSize);
     }
 
     /**

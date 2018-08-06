@@ -14,7 +14,8 @@ class MapController extends Controller
      */
     public function index(Mapper $mapper)
     {
-        $mapper->addPlayerHead('FacelessRobot', new Coord(-4503, 63, -2573), 25, 16);
+        $mapper->addTown('Spawn Town', new Coord(-4503, 63, -2573), 25, 16);
+        $mapper->addPlayerHead('FacelessRobot', new Coord(-5600, 63, -3500), 25, 16);
         $mapper->getResult('map.png');
 
         die();
