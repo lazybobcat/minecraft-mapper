@@ -47,4 +47,9 @@ class Coord
     {
         return new Coord($left->x - $right->x, $left->y, $left->z - $right->z);
     }
+
+    public static function add(Coord $left, Coord $right)
+    {
+        return new Coord($left->x + $right->x, $left->y, $left->z + $right->z);
+    }
 }

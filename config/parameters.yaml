@@ -6,5 +6,6 @@ parameters:
     database_url: 'mysql://db_user:db_password@127.0.0.1:3306/db_name'
     mailer_url: 'smtp://localhost'
     map.image: '%kernel.project_dir%/assets/img/symmetria_4324761504212244994.png'
-    map.top_left_coords: -11769,-6341
-    map.bottom_right_coords: 2331,1098
+    map.top_left_coords: '-11769,-6341'
+    map.bottom_right_coords: '2331,1098'
+    map.output_dir: '%kernel.project_dir%/public/img'
