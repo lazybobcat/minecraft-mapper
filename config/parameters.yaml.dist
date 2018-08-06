@@ -1,0 +1,15 @@
+parameters:
+    # Translations
+    locale: fr
+    available_locales: ['fr']
+
+    # Doctrine
+    database_url: 'mysql://db_user:db_password@127.0.0.1:3306/db_name'
+
+    # Swift
+    mailer_url: 'smtp://localhost'
+
+    # Map
+    map.image: '%kernel.project_dir%/<path_to_file.ext>'
+    map.topLeftCoords: -500,-500
+    map.bottomRightCoords: 500,500
