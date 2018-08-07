@@ -31,3 +31,4 @@ yarn-error.log
 
 # PHP-CS-Fixer
 /.php_cs.cache
+/config/parameters.yaml
