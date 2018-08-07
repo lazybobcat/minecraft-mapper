@@ -1,0 +1,14 @@
+{% if app.request.hasPreviousSession %}
+    {% set alerts = app.session.flashBag.all %}
+    {% if alerts|length %}
+        <div class="alerts">
+            {% for type, messages in alerts %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ type }}">
+                        {{ message | trans | raw }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endif %}

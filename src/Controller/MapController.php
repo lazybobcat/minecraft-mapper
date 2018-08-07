@@ -16,7 +16,14 @@ class MapController extends Controller
      */
     public function edit()
     {
-        die('edit');
+        $players = $this->getDoctrine()->getRepository(Player::class)->findAll();
+        $pois = $this->getDoctrine()->getRepository(PointOfInterest::class)->findAll();
+
+
+        return $this->render('map/edit.html.twig', [
+            'players' => $players,
+            'pois' => $pois,
+        ]);
     }
 
     /**
@@ -24,10 +31,6 @@ class MapController extends Controller
      */
     public function generate(Mapper $mapper)
     {
-//        $mapper->addPointOfInterest('Spawn Town', 'town', new Coord(-4503, 63, -2573), 25, 16);
-//        $mapper->addPlayerHead('FacelessRobot', new Coord(-5600, 63, -3500), 25, 16);
-//        $mapper->getResult('map.png');
-
         $players = $this->getDoctrine()->getRepository(Player::class)->findAll();
         $pois = $this->getDoctrine()->getRepository(PointOfInterest::class)->findAll();
 
