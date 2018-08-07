@@ -28,14 +28,14 @@
                             <div class="col-md-3"><img src="{{ asset('map/'~ poi.type ~'.png') }}" alt="{{ poi.type }}" title="{{ poi.type }}"></div>
                             <div class="col-md-3">{{ poi.coords }}</div>
                             <div class="col-md-3">
-                                <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="{{ path('poi_edit', {'poi': poi.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{{ path('poi_delete', {'poi': poi.id}) }}" class="btn btn-danger btn-sm">Delete</a>
                             </div>
                         </div>
                     {% endfor %}
 
                     <div class="mt-5 text-right">
-                        <a href="#" class="btn btn-success">Add Point of Interest</a>
+                        <a href="{{ path('poi_add') }}" class="btn btn-success">Add Point of Interest</a>
                     </div>
                 </div>
                 <div class="bg-dark my-3 mx-1 py-3 px-3 text-white">

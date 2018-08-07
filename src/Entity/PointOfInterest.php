@@ -55,7 +55,7 @@ class PointOfInterest
     public static function getTypes()
     {
         return [
-            self::TYPE_TOWN => 'Factory',
+            self::TYPE_TOWN => 'Town',
             self::TYPE_SPAWN => 'Spawn',
             self::TYPE_IRON_FARM => 'Iron Farm',
             self::TYPE_FACTORY => 'Factory',
