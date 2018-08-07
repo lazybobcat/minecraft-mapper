@@ -16,6 +16,7 @@ class PointOfInterest
     const TYPE_TOWN = 'town';
     const TYPE_SPAWN = 'spawn';
     const TYPE_IRON_FARM = 'iron-farm';
+    const TYPE_FACTORY = 'factory';
     const TYPE_MINE = 'mine';
     const TYPE_STATION = 'station';
     const TYPE_SWORD = 'sword';
