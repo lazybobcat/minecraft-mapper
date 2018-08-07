@@ -16,7 +16,7 @@ class MapController extends Controller
      */
     public function edit()
     {
-        $players = $this->getDoctrine()->getRepository(Player::class)->findAll();
+        $players = $this->getDoctrine()->getRepository(Player::class)->findBy([], ['name' => 'ASC']);
         $pois = $this->getDoctrine()->getRepository(PointOfInterest::class)->findAll();
 
 

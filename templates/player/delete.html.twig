@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block main_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 my-3 mx-1 py-3 px-3">
+                <h1 class="h2">
+                    Delete {{ player.name }}'s information
+                </h1>
+
+                <div>
+                    {{ form_start(form) }}
+
+                    <div>
+                        Are you sure you want to delete {{ player.name }}'s information? This action is irreversible.
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="{{ path('map_edit') }}" class="btn btn-dark">
+                            Back
+                        </a>
+                        <button type="submit" class="btn btn-danger">
+                            Delete
+                        </button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
