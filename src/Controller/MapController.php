@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Player;
 use App\Entity\PointOfInterest;
-use App\Map\Mapper;
+use App\Map\MapManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,22 +29,9 @@ class MapController extends Controller
     /**
      * @Route("/generate", name="map_generate")
      */
-    public function generate(Mapper $mapper)
+    public function generate(MapManager $manager)
     {
-        $players = $this->getDoctrine()->getRepository(Player::class)->findAll();
-        $pois = $this->getDoctrine()->getRepository(PointOfInterest::class)->findAll();
-
-        /** @var Player $player */
-        foreach ($players as $player) {
-            $mapper->addPlayerHead($player->getName(), $player->getCoords(), 22, 16);
-        }
-
-        /** @var PointOfInterest $poi */
-        foreach ($pois as $poi) {
-            $mapper->addPointOfInterest($poi->getName(), $poi->getType(), $poi->getCoords(), 28, 16);
-        }
-
-        $file = $mapper->getResult('map.png');
+        $file = $manager->generate();
 
         return new BinaryFileResponse($file);
     }

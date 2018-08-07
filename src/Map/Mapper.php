@@ -103,10 +103,21 @@ class Mapper
     public function addPlayerHead($playerName, Coord $baseCoords, $headSize = 8, $nameSize = 8)
     {
         $uuid = $this->mojangAPI->getUuid($playerName);
-        $head = $this->mojangAPI->getPlayerHead($uuid);
+        $file = $this->outputDir . DIRECTORY_SEPARATOR . 'PLAYER_HEAD_' . $playerName . '.png';
 
-        $file = tempnam(sys_get_temp_dir(), 'PLAYER_HEAD_');
-        file_put_contents($file, $head);
+        if (file_exists($file)) {
+            $head = file_get_contents($file);
+        } else {
+            $head = $this->mojangAPI->getPlayerHead($uuid);
+        }
+
+        if (!empty($head)) {
+            file_put_contents($file, $head);
+        } else {
+            $head = $this->mojangAPI->getSteveHead();
+            $file = tempnam(sys_get_temp_dir(), 'PLAYER_HEAD_');
+            file_put_contents($file, $head);
+        }
 
         $position = $this->blockToPixelCoords($baseCoords);
         $pxTextPosition = clone $position;
