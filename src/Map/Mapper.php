@@ -117,9 +117,9 @@ class Mapper
         $this->actions[] = new DrawTextAction($playerName, $pxTextPosition, $nameSize);
     }
 
-    public function addTown($name, Coord $coords, $size = 8, $nameSize = 8)
+    public function addPointOfInterest($name, $type, Coord $coords, $size = 8, $nameSize = 8)
     {
-        $file = $this->resourcesDir . DIRECTORY_SEPARATOR . 'town.png';
+        $file = $this->resourcesDir . DIRECTORY_SEPARATOR . $type . '.png';
         $position = $this->blockToPixelCoords($coords);
         $pxImagePosition = Coord::sub($position, new Coord($size/2, 0, $size/2));
         $pxTextPosition = clone $position;

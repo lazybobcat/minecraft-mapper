@@ -27,6 +27,11 @@ class Coord
         $this->z = $z;
     }
 
+    public function __toString()
+    {
+        return "{$this->x},{$this->y},{$this->z}";
+    }
+
     /**
      * @param array $coords
      *
@@ -35,11 +40,11 @@ class Coord
     public static function fromArray(array $coords)
     {
         if (count($coords) === 3) {
-            return new Coord($coords[0], $coords[1], $coords[2]);
+            return new Coord(intval($coords[0]), intval($coords[1]), intval($coords[2]));
         } elseif (count($coords) === 2) {
-            return new Coord($coords[0], 63, $coords[1]);
+            return new Coord(intval($coords[0]), 63, intval($coords[1]));
         } else {
-            throw new \LogicException("Invalid coordinates format for topLeftCoords parameters. Should be '<x>,<y>,<z>'");
+            throw new \LogicException("Invalid coordinates format. Should be '<x>,<y>,<z>'");
         }
     }
 
