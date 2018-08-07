@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dddaa18adcc073cc3f836d01cc02a4e3",
-    "content-hash": "362ab3334d65876d429165bbeafdabdd",
+    "hash": "8206c10461fa653729d2d0706294966d",
+    "content-hash": "c153d6cc3c56fe084700f27b4dcb233e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2628,6 +2628,28 @@
                 "mailer"
             ],
             "time": "2018-07-13 07:04:35"
+        },
+        {
+            "name": "symfony/apache-pack",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/apache-pack.git",
+                "reference": "3aa5818d73ad2551281fc58a75afd9ca82622e6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/apache-pack/zipball/3aa5818d73ad2551281fc58a75afd9ca82622e6c",
+                "reference": "3aa5818d73ad2551281fc58a75afd9ca82622e6c",
+                "shasum": ""
+            },
+            "type": "symfony-pack",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A pack for Apache support in Symfony",
+            "time": "2017-12-12 01:46:35"
         },
         {
             "name": "symfony/asset",
