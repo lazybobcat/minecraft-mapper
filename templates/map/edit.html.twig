@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <div class="bg-light my-3 mx-1 py-3 px-3">
+                <div class="bg-info text-white my-3 mx-1 py-3 px-3">
                     <div class="text-center">
                         <h2>Map preview</h2>
                     </div>
@@ -17,26 +17,6 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="bg-dark my-3 mx-1 py-3 px-3 text-white">
-                    <div class="text-center">
-                        <h2>Players</h2>
-                    </div>
-
-                    {% for player in players %}
-                        <div class="row align-items-center">
-                            <div class="col-md-5">{{ player.name }}</div>
-                            <div class="col-md-4">{{ player.coords }}</div>
-                            <div class="col-md-3">
-                                <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                            </div>
-                        </div>
-                    {% endfor %}
-
-                    <div class="mt-5 text-right">
-                        <a href="#" class="btn btn-success">Add Player</a>
-                    </div>
-                </div>
                 <div class="bg-light my-3 mx-1 py-3 px-3">
                     <div class="text-center">
                         <h2>Points of Interest</h2>
@@ -56,6 +36,26 @@
 
                     <div class="mt-5 text-right">
                         <a href="#" class="btn btn-success">Add Point of Interest</a>
+                    </div>
+                </div>
+                <div class="bg-dark my-3 mx-1 py-3 px-3 text-white">
+                    <div class="text-center">
+                        <h2>Players</h2>
+                    </div>
+
+                    {% for player in players %}
+                        <div class="row align-items-center mb-1">
+                            <div class="col-md-5">{{ player.name }}</div>
+                            <div class="col-md-4">{{ player.coords }}</div>
+                            <div class="col-md-3">
+                                <a href="{{ path('player_edit', {'player': player.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="mt-5 text-right">
+                        <a href="{{ path('player_add') }}" class="btn btn-success">Add Player</a>
                     </div>
                 </div>
             </div>
