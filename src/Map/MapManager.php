@@ -39,6 +39,8 @@ class MapManager
             $this->mapper->addPointOfInterest($poi->getName(), $poi->getType(), $poi->getCoords(), 28, 16);
         }
 
+        $this->mapper->addWorldBorder(5000);
+
         return $this->mapper->getResult('map.png');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Map;
 use App\Map\Action\ActionInterface;
 use App\Map\Action\DrawImageAction;
 use App\Map\Action\DrawTextAction;
+use App\Map\Action\DrawWorldBorderAction;
 use App\Mojang\MojangAPI;
 use Impulze\Bundle\InterventionImageBundle\ImageManager;
 
@@ -36,6 +37,11 @@ class Mapper
     private $bottomRightCoords;
 
     /**
+     * @var Coord
+     */
+    private $centerCoords;
+
+    /**
      * @var array
      */
     private $imageSize;
@@ -60,7 +66,7 @@ class Mapper
      */
     private $outputDir;
 
-    public function __construct(ImageManager $imageManager, MojangAPI $mojangAPI, $map, $topLeftCoords, $bottomRightCoords, $resourcesDir, $outputDir)
+    public function __construct(ImageManager $imageManager, MojangAPI $mojangAPI, $map, $topLeftCoords, $bottomRightCoords, $centerCoords, $resourcesDir, $outputDir)
     {
         $this->map = $map;
         $this->imageSize = getimagesize($this->map);
@@ -70,6 +76,9 @@ class Mapper
 
         $bottomRightCoords = explode(',', $bottomRightCoords);
         $this->bottomRightCoords = Coord::fromArray($bottomRightCoords);
+
+        $centerCoords = explode(',', $centerCoords);
+        $this->centerCoords = Coord::fromArray($centerCoords);
 
         // Computing coeffs
         $this->blockSizeInPixels = $this->imageSize[0] / ($this->bottomRightCoords->x - $this->topLeftCoords->x);
@@ -138,6 +147,15 @@ class Mapper
 
         $this->actions[] = new DrawImageAction($file, $pxImagePosition, $size);
         $this->actions[] = new DrawTextAction($name, $pxTextPosition, $nameSize);
+    }
+
+    public function addWorldBorder($radius = 5000)
+    {
+        $blockTopLeft = new Coord($this->centerCoords->x - $radius, 63, $this->centerCoords->z - 5000);
+        $blockBottomRight = new Coord($this->centerCoords->x + $radius, 63, $this->centerCoords->z + 5000);
+        $topLeft = $this->blockToPixelCoords($blockTopLeft);
+        $bottomRight = $this->blockToPixelCoords($blockBottomRight);
+        $this->actions[] = new DrawWorldBorderAction($topLeft, $bottomRight);
     }
 
     /**

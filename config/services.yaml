@@ -28,5 +28,6 @@ services:
             $map: '%map.image%'
             $topLeftCoords: '%map.top_left_coords%'
             $bottomRightCoords: '%map.bottom_right_coords%'
+            $centerCoords: '%map.center_coords%'
             $resourcesDir: '%map.resources_dir%'
             $outputDir: '%map.output_dir%'

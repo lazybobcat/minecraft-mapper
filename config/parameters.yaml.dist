@@ -13,5 +13,6 @@ parameters:
     map.image: '%kernel.project_dir%/<path_to_file.ext>'
     map.top_left_coords: -500,-500
     map.bottom_right_coords: 500,500
+    map.center_coords: '0,0'
     map.resources_dir: '%kernel.project_dir%/public/map'
     map.output_dir: '%kernel.project_dir%/public/img'
